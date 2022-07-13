@@ -5,8 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .questions ul li{
+            display: none;
+        }
+        .active{
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
-    <h2>This is </h2>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <div class="questions">
+        <ul>
+            <li class="active">
+                <h5>Question 1</h5>
+            </li>
+            <li>
+                <h5>Question 2</h5>
+            </li>
+            <li>
+                <h5>Question 3</h5>
+            </li>
+            <li>
+                <h5>Question 4</h5>
+            </li>
+            <li>
+                <h5>Question 5</h5>
+            </li>
+            <li>
+                <h5>Question 6</h5>
+            </li>
+        </ul>
+    </div>
+    <button class="demo1" id="prev">Prev</button>
+    <button class="demo1" id="next">Next</button>
 </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var i = 0;
+            var totalQuestions = $('.questions ul li').length;
+            $("#next").click(function(){
+                $('#prev').attr('disabled', false);
+                i++;
+                if(i == totalQuestions-1){
+                    $('#next').attr('disabled', true);
+                }
+                $(".questions ul li").removeClass("active");
+                $(".questions ul li").eq(i).addClass("active");
+            });
+            $("#prev").click(function(){
+                    $('#next').attr('disabled', false);
+                i--;
+                if(i == 0){
+                    $('#prev').attr('disabled', true);
+                }
+                $(".questions ul li").removeClass("active");
+                $(".questions ul li").eq(i).addClass("active");
+            });
+        });
+    </script>
+
 </html>
